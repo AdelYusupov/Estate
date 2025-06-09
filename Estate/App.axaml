@@ -1,0 +1,23 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Estate.App"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.Styles>
+        <FluentTheme />
+	
+		<Style Selector="Button.primary">
+			<Setter Property="Background" Value="#BB2233"/>
+			<Setter Property="Foreground" Value="White"/>
+		</Style>
+		<Style Selector="Button.secondary">
+			<Setter Property="Background" Value="#6A1B9A"/>
+			<Setter Property="Foreground" Value="White"/>
+		</Style>
+		<Style Selector="Button.danger">
+			<Setter Property="Background" Value="#C62828"/>
+			<Setter Property="Foreground" Value="White"/>
+		</Style>
+    </Application.Styles>
+</Application>

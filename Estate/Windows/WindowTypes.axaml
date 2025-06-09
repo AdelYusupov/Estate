@@ -1,0 +1,137 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"  d:DesignWidth="1200"
+        d:DesignHeight="800"
+        x:Class="Estate.WindowTypes"
+        Title="Управление типами"
+        WindowStartupLocation="CenterScreen"
+		Background="#FAE3CF">
+
+	<Grid>
+		<!-- Основной макет с боковой панелью и контентом -->
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>
+			<!-- Боковая панель -->
+			<ColumnDefinition Width="*"/>
+			<!-- Основное содержание -->
+		</Grid.ColumnDefinitions>
+
+		<!-- Боковая панель навигации -->
+		<Border Grid.Column="0" Background="#BB2233" Width="200">
+			<StackPanel>
+				<!-- Логотип в боковой панели -->
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10" Margin="10" VerticalAlignment="Top">
+					<Image Source="/Resources/logo.png" Width="48" Height="48"/>
+					<TextBlock Text="Типы"
+                               FontSize="16"
+                               FontWeight="Bold"
+                              Foreground="#FAE3CF"
+                               VerticalAlignment="Center"/>
+				</StackPanel>
+
+				<!-- Навигационные кнопки -->
+				<StackPanel Margin="10" Spacing="5">
+					
+					<Button Content="Клиенты"
+                            Classes="navButton"
+                            HorizontalAlignment="Stretch"
+                            Height="40"
+							Click="ClientsButton_Click"
+							Foreground="#FAE3CF"/>
+					<Button Content="Агенты"
+                            Classes="navButton"
+                            HorizontalAlignment="Stretch"
+                            Height="40"
+							Click="AgentsButton_Click"
+							Foreground="#FAE3CF"/>
+					<Button Content="Недвижимость"
+                            Classes="navButton"
+                            HorizontalAlignment="Stretch"
+                            Height="40"
+							Click="RealEstatesButton_Click"
+							Foreground="#FAE3CF"/>
+					<Button Content="Предложение"
+                            Classes="navButton"
+                            HorizontalAlignment="Stretch"
+                            Height="40"
+							Click="SuppliesButton_Click"
+							Foreground="#FAE3CF"/>
+					<Button Content="Потребность"
+                            Classes="navButton"
+                            HorizontalAlignment="Stretch"
+                            Height="40"
+							Click="DemandsButton_Click"
+							Foreground="#FAE3CF"/>
+					<Button Content="Сделки"
+                            Classes="navButton"
+                            HorizontalAlignment="Stretch"
+                            Height="40"
+							Click="DealsButton_Click"
+							Foreground="#FAE3CF"/>
+					
+				</StackPanel>
+			</StackPanel>
+		</Border>
+
+		<!-- Основное содержание -->
+		<Grid Grid.Column="1" Margin="15">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<!-- Панель поиска -->
+				<RowDefinition Height="*"/>
+				<!-- Список аэропортов -->
+				<RowDefinition Height="Auto"/>
+				<!-- Поля редактирования -->
+			</Grid.RowDefinitions>
+
+		
+
+			<!-- Список аэропортов -->
+			<ListBox x:Name="TypesListBox"
+                     Grid.Row="1"
+					 Background="#FAE3CF"
+                     Margin="0,0,0,15"
+                     SelectionChanged="TypesListBox_SelectionChanged"/>
+
+			<!-- Поля редактирования -->
+			<StackPanel Grid.Row="2" Spacing="10">
+				<StackPanel Spacing="5">
+					<TextBlock Text="Название:"/>
+					<TextBox x:Name="NameTextBox" Height="36"/>
+				</StackPanel>
+
+				<WrapPanel HorizontalAlignment="Center" Margin="0,15,0,0">
+					<Button Content="Добавить"
+                            Width="120"
+                            Height="36"
+                            Classes="primary"
+                            Click="AddButton_Click"
+							Foreground="#FAE3CF"/>
+
+					<Button Content="Изменить"
+                            Width="120"
+                            Height="36"
+                            Classes="primary"
+                            Click="EditButton_Click"
+							Foreground="#FAE3CF"/>
+
+					<Button Content="Удалить"
+                            Width="120"
+                            Height="36"
+                          Classes="primary"
+                            Click="DeleteButton_Click"
+							Foreground="#FAE3CF"/>
+
+					<Button Content="Назад"
+                            Width="120"
+                            Height="36"
+							Classes="primary"
+                            Click="BackButton_Click"
+							Foreground="#FAE3CF"/>
+				</WrapPanel>
+			</StackPanel>
+		</Grid>
+	</Grid>
+</Window>

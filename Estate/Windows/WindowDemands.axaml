@@ -1,0 +1,181 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        d:DesignWidth="1200"
+        d:DesignHeight="800"
+        x:Class="Estate.WindowDemands"
+        Title="Управление потребностями"
+        WindowStartupLocation="CenterScreen"
+		Background="#FAE3CF">
+	<Grid>
+		<!-- Боковая панель -->
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<!-- Навигационная боковая панель -->
+		<Border Grid.Column="0" Background="#BB2233" Width="200">
+			<StackPanel>
+				<!-- Логотип -->
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10" Margin="10" VerticalAlignment="Top">
+					<Image Source="/Resources/logo.png" Width="48" Height="48"/>
+					<TextBlock Text="Потребности"
+                               FontSize="16"
+                               FontWeight="Bold"
+                             Foreground="#FAE3CF"
+                               VerticalAlignment="Center"/>
+				</StackPanel>
+				<!-- Кнопки навигации -->
+				<StackPanel Margin="10" Spacing="5">
+					<Button Content="Типы"
+                            Classes="navButton"
+                            HorizontalAlignment="Stretch"
+                            Height="40"
+                            Click="TypesButton_Click"
+							Foreground="#FAE3CF"/>
+					<Button Content="Клиенты"
+                            Classes="navButton"
+                            HorizontalAlignment="Stretch"
+                            Height="40"
+                            Click="ClientsButton_Click"
+							Foreground="#FAE3CF"/>
+					<Button Content="Агенты"
+                            Classes="navButton"
+                            HorizontalAlignment="Stretch"
+                            Height="40"
+                            Click="AgentsButton_Click"
+							Foreground="#FAE3CF"/>
+					<Button Content="Недвижимость"
+                            Classes="navButton"
+                            HorizontalAlignment="Stretch"
+                            Height="40"
+                            Click="RealEstatesButton_Click"
+							Foreground="#FAE3CF"/>
+					<Button Content="Предложения"
+                            Classes="navButton"
+                            HorizontalAlignment="Stretch"
+                            Height="40"
+                            Click="SuppliesButton_Click"
+							Foreground="#FAE3CF"/>
+					<Button Content="Сделки"
+                            Classes="navButton"
+                            HorizontalAlignment="Stretch"
+                            Height="40"
+                            Click="DealsButton_Click"
+							Foreground="#FAE3CF"/>
+				</StackPanel>
+			</StackPanel>
+		</Border>
+		<!-- Основной контент -->
+		<Grid Grid.Column="1" Margin="15">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<!-- Поиск -->
+				<RowDefinition Height="*"/>
+				<!-- Список потребностей -->
+				<RowDefinition Height="Auto"/>
+				<!-- Поля редактирования -->
+			</Grid.RowDefinitions>
+			<!-- Панель поиска -->
+			<StackPanel Grid.Row="0"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="0,0,0,15">
+				<TextBlock Text="Поиск потребности:"
+                           VerticalAlignment="Center"
+                           Margin="0,0,15,0"/>
+				<TextBox x:Name="SearchTextBox"
+                         Width="300"
+                         Height="36"
+                         Margin="0,0,15,0"
+                         Watermark="Адрес или диапазон цен"
+                         TextChanged="SearchTextBox_TextChanged"/>
+			</StackPanel>
+			<!-- Список потребностей -->
+			<ListBox x:Name="DemandsListBox"
+                     Grid.Row="1"
+					 Background="#FAE3CF"
+                     Margin="0,0,0,15"
+                     SelectionChanged="DemandsListBox_SelectionChanged"/>
+			<!-- Поля редактирования -->
+			<StackPanel Grid.Row="2" Spacing="10">
+				<Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto" Margin="0,0,0,10">
+					<!-- Адрес -->
+					<StackPanel Grid.Column="0" Grid.Row="0" Spacing="5" Margin="0,0,10,0">
+						<TextBlock Text="Адрес:"/>
+						<TextBox x:Name="AddressTextBox" Height="36" MaxLength="255"/>
+					</StackPanel>
+					<!-- Минимальная цена -->
+					<StackPanel Grid.Column="1" Grid.Row="0" Spacing="5" Margin="0,0,10,0">
+						<TextBlock Text="Мин. цена:"/>
+						<TextBox x:Name="MinPriceTextBox" Height="36" MaxLength="10"/>
+					</StackPanel>
+					<!-- Максимальная цена -->
+					<StackPanel Grid.Column="2" Grid.Row="0" Spacing="5">
+						<TextBlock Text="Макс. цена:"/>
+						<TextBox x:Name="MaxPriceTextBox" Height="36" MaxLength="10"/>
+					</StackPanel>
+					<!-- Риэлтор -->
+					<StackPanel Grid.Column="0" Grid.Row="1" Spacing="5" Margin="0,10,10,0">
+						<TextBlock Text="Риэлтор:"/>
+						<ComboBox x:Name="AgentComboBox" Height="36"/>
+					</StackPanel>
+					<!-- Клиент -->
+					<StackPanel Grid.Column="1" Grid.Row="1" Spacing="5" Margin="0,10,10,0">
+						<TextBlock Text="Клиент:"/>
+						<ComboBox x:Name="ClientComboBox" Height="36"/>
+					</StackPanel>
+					<!-- Заглушка -->
+					<StackPanel Grid.Column="2" Grid.Row="1" Spacing="5">
+						<TextBlock Text=" "/>
+					</StackPanel>
+					<!-- ApartmentFilter_ID -->
+					<StackPanel Grid.Column="0" Grid.Row="2" Spacing="5" Margin="0,10,10,0">
+						<TextBlock Text="ID фильтра квартиры:"/>
+						<TextBox x:Name="ApartmentFilterTextBox" Height="36" MaxLength="10" Watermark="Не обязательно"/>
+					</StackPanel>
+					<!-- HouseFilter_ID -->
+					<StackPanel Grid.Column="1" Grid.Row="2" Spacing="5" Margin="0,10,10,0">
+						<TextBlock Text="ID фильтра дома:"/>
+						<TextBox x:Name="HouseFilterTextBox" Height="36" MaxLength="10" Watermark="Не обязательно"/>
+					</StackPanel>
+					<!-- LandFilter_ID -->
+					<StackPanel Grid.Column="2" Grid.Row="2" Spacing="15">
+						<TextBlock Text="ID фильтра участка:"/>
+						<TextBox x:Name="LandFilterTextBox" Height="36" MaxLength="10" Watermark="Не обязательно"/>
+					</StackPanel>
+				</Grid>
+				<!-- Кнопки управления -->
+				<WrapPanel HorizontalAlignment="Center" Margin="0,15,0,0">
+					<Button Content="Добавить"
+                            Width="120"
+                            Height="36"
+                            Classes="primary"
+                            Click="AddButton_Click"
+							Foreground="#FAE3CF"/>
+					<Button Content="Изменить"
+                            Width="120"
+                            Height="36"
+                            Classes="primary"
+                            Click="EditButton_Click"
+							Foreground="#FAE3CF"/>
+					<Button Content="Удалить"
+                            Width="120"
+                            Height="36"
+                           Classes="primary"
+                            Click="DeleteButton_Click"
+							Foreground="#FAE3CF"/>
+					<Button Content="Назад"
+                            Width="120"
+                            Height="36"
+							Classes="primary"
+                            Click="BackButton_Click"
+							Foreground="#FAE3CF"/>
+				</WrapPanel>
+			</StackPanel>
+		</Grid>
+	</Grid>
+</Window>
